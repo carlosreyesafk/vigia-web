@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vigía Web — tu sitio, vigilado 24/7</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">🛰️ Vigía Web <span class="by">por Chachi</span></div>
+    <h1>Si tu web se cae o vence el SSL,<br>te enteras en minutos.</h1>
+    <p class="sub">Monitoreo 24/7 de uptime + certificado SSL para pymes, agencias y freelancers. Sin tarjeta. Sin KYC. El premium se paga en crypto.</p>
+    <div class="plans">
+      <div class="plan"><b>GRATIS</b><span>3 sitios · chequeo cada hora</span><strong>US$0</strong></div>
+      <div class="plan hot"><b>PREMIUM</b><span>20 sitios · chequeo cada 5 min · alertas Telegram</span><strong>US$9/mes en USDT</strong></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="card" id="setup-card">
+    <h2>Tu panel</h2>
+    <p class="muted">Escribe tu email para ver y manejar tus sitios. (Lo guardamos en tu navegador.)</p>
+    <div class="row">
+      <input id="email" type="email" placeholder="tu@email.com" autocomplete="email">
+      <button id="btn-load" class="btn primary">Ver mis sitios</button>
+    </div>
+    <div id="plan-line" class="muted"></div>
+  </section>
+
+  <section class="card hidden" id="dash-card">
+    <div class="dash-head">
+      <h2>Mis sitios <span id="count"></span></h2>
+      <button id="btn-refresh" class="btn">↻ Actualizar</button>
+    </div>
+    <div id="sites"></div>
+    <h3>Agregar sitio</h3>
+    <div class="row wrap-row">
+      <input id="new-url" placeholder="https://tudominio.com">
+      <input id="new-label" placeholder="Etiqueta (opcional)">
+      <input id="new-tg" placeholder="Telegram chat id (opcional)">
+      <button id="btn-add" class="btn primary">+ Agregar</button>
+    </div>
+    <p class="muted small">Límite gratis: 3 sitios. ¿Necesitas más? Pasa a premium abajo.</p>
+  </section>
+
+  <section class="card hidden" id="premium-card">
+    <h2>⚡ Premium — US$<span id="p-price">9</span>/mes</h2>
+    <p class="muted">20 sitios · chequeo cada 5 minutos · alertas instantáneas por Telegram. Pago único en <b>USDT (Tron)</b>, sin crear cuenta en ningún procesador.</p>
+    <div id="premium-body"><p class="muted">Cargando…</p></div>
+  </section>
+
+  <section class="card">
+    <h2>¿Cómo funciona?</h2>
+    <ol class="how">
+      <li>Agregas las URLs que quieres vigilar.</li>
+      <li>Cada hora (gratis) revisamos si responden y cuántos días le quedan al certificado SSL.</li>
+      <li>Si algo se cae o el SSL vence en ≤14 días, lo ves aquí y te llega alerta por Telegram.</li>
+      <li>El premium se activa solo: pagas los USDT a la wallet, pegas el hash y la cadena lo confirma.</li>
+    </ol>
+  </section>
+</main>
+
+<footer><div class="wrap muted small">Vigía Web · operado por Chachi · Santo Domingo, RD · <span id="health"></span></div></footer>
+<script src="/app.js"></script>
+</body>
+</html>
