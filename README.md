@@ -69,7 +69,11 @@ Conecta este repo. Variables de entorno:
 | `PREMIUM_PRICE_USD` | `9` |
 | `TELEGRAM_BOT_TOKEN` / `TELEGRAM_CHAT_ID` | opcionales: alertas globales |
 
-El cron de `vercel.json` corre `/api/check` cada hora en producción.
+El cron de `vercel.json` corre `/api/check` 1 vez al día en producción
+(límite del plan Hobby de Vercel: los crons horarios requieren Pro).
+Para cumplir la frecuencia prometida, la VM dispara el mismo endpoint:
+cron horario (plan gratis) + cron cada 5 min (sitios premium) — ver `ficha.md`.
+Si el proyecto sube a Pro, basta cambiar el schedule a `0 * * * *`.
 
 ### 3. Probar
 - `GET /api/health` → `{"tables": true, ...}`
@@ -78,7 +82,9 @@ El cron de `vercel.json` corre `/api/check` cada hora en producción.
 
 ## Notas honestas
 
-- En el plan Hobby de Vercel, el cron puede correr con frecuencia limitada;
-  el botón "Chequear ahora" y el plan premium están diseñados para cuando
-  el proyecto suba de plan. El chequeo gratis por hora funciona desde el día 1.
+- En el plan Hobby de Vercel, los crons están limitados a 1/día (la API
+  rechazó `0 * * * *` con `cron_jobs_limits_reached`). Por eso la frecuencia
+  real la dan dos crons de la VM (`vigia-web-check-hourly` y
+  `vigia-web-check-premium-5m`) que disparan `/api/check`; el cron de Vercel
+  queda como respaldo diario. El chequeo gratis por hora funciona desde el día 1.
 - `PREMIUM_WALLET` es placeholder hasta que se configure la wallet real de cobro.
